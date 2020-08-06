@@ -31,7 +31,7 @@ class Tooltip extends React.PureComponent {
     const { onClose } = this.props;
     this.getElementPosition();
     this.setState((prevState) => {
-      if (prevState.isVisible && !isIOS) {
+      if (prevState.isVisible) {
         onClose && onClose();
       }
 
@@ -163,7 +163,7 @@ class Tooltip extends React.PureComponent {
 
   componentDidMount() {
     // wait to compute onLayout values.
-    setTimeout(this.getElementPosition, 500);
+    requestAnimationFrame(this.getElementPosition);
   }
 
   getElementPosition = () => {
